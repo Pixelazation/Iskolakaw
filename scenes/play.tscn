@@ -1,3 +1,13 @@
-[gd_scene format=3 uid="uid://bqjwvsn25defh"]
+[gd_scene load_steps=3 format=3 uid="uid://bqjwvsn25defh"]
+
+[ext_resource type="PackedScene" uid="uid://dep7xdlc8m2vw" path="res://scenes/isko.tscn" id="1_6f6sv"]
+[ext_resource type="PackedScene" uid="uid://d23agi4nonj0s" path="res://scenes/arrow.tscn" id="2_rqsmm"]
 
 [node name="Play" type="Node2D"]
+position = Vector2(17, 21)
+
+[node name="Isko" parent="." instance=ExtResource("1_6f6sv")]
+position = Vector2(102, 27)
+
+[node name="Arrow" parent="." instance=ExtResource("2_rqsmm")]
+position = Vector2(58, 24)
