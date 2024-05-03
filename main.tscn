@@ -4,9 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://04q20oaug0y2" path="res://scenes/main_menu.tscn" id="2_rd2et"]
 [ext_resource type="PackedScene" uid="uid://bqjwvsn25defh" path="res://scenes/play.tscn" id="3_8bj5r"]
 
-[node name="Node" type="Node"]
+[node name="Game" type="Node2D"]
 script = ExtResource("1_b88j3")
+PLAY_SCENE = ExtResource("3_8bj5r")
 
 [node name="MainMenu" parent="." instance=ExtResource("2_rd2et")]
-
-[node name="Play" parent="." instance=ExtResource("3_8bj5r")]

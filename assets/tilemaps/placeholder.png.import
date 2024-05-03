@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d03fddiujsj7g"
-path="res://.godot/imported/isko.png-ea3459cbd4295dad9f3135efce853f8b.ctex"
+uid="uid://tdjw50sfs34n"
+path="res://.godot/imported/placeholder.png-b61e8a6a28ec21ae38bdc6ce75d7b0dc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/isko.png"
-dest_files=["res://.godot/imported/isko.png-ea3459cbd4295dad9f3135efce853f8b.ctex"]
+source_file="res://assets/tilemaps/placeholder.png"
+dest_files=["res://.godot/imported/placeholder.png-b61e8a6a28ec21ae38bdc6ce75d7b0dc.ctex"]
 
 [params]
 
