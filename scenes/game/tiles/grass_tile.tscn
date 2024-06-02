@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://cscq68fx7l6fw"]
+
+[ext_resource type="Texture2D" uid="uid://d1usviw2068vr" path="res://assets/textures/tiles/bg1.png" id="1_nl2jf"]
+
+[node name="GrassTile" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 64.0
+offset_bottom = 64.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="GrassTileTexture" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_nl2jf")

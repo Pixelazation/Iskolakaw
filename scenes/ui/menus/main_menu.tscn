@@ -1,0 +1,90 @@
+[gd_scene load_steps=3 format=3 uid="uid://04q20oaug0y2"]
+
+[ext_resource type="Theme" uid="uid://bdwiya3vu4tw" path="res://assets/themes/default_theme.tres" id="1_aq3a6"]
+[ext_resource type="Script" path="res://scenes/ui/menus/main_menu.gd" id="2_gqq4o"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_aq3a6")
+script = ExtResource("2_gqq4o")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.505882, 0.654902, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 128
+text = "ISKOLAKAW"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ButtonsVBox" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+
+[node name="LevelSelectButton" type="Button" parent="MarginContainer/VBoxContainer/ButtonsVBox"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_neighbor_top = NodePath("../QuitButton")
+focus_neighbor_bottom = NodePath("../HowToPlayButton")
+focus_next = NodePath("../HowToPlayButton")
+focus_previous = NodePath("../QuitButton")
+theme_override_font_sizes/font_size = 64
+text = "Level Select"
+
+[node name="HowToPlayButton" type="Button" parent="MarginContainer/VBoxContainer/ButtonsVBox"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_neighbor_top = NodePath("../LevelSelectButton")
+focus_neighbor_bottom = NodePath("../QuitButton")
+focus_next = NodePath("../QuitButton")
+focus_previous = NodePath("../LevelSelectButton")
+theme_override_font_sizes/font_size = 64
+text = "How to Play
+"
+
+[node name="QuitButton" type="Button" parent="MarginContainer/VBoxContainer/ButtonsVBox"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_neighbor_top = NodePath("../HowToPlayButton")
+focus_neighbor_bottom = NodePath("../LevelSelectButton")
+focus_next = NodePath("../LevelSelectButton")
+focus_previous = NodePath("../HowToPlayButton")
+theme_override_font_sizes/font_size = 64
+text = "Quit
+"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonsVBox/LevelSelectButton" to="." method="_on_level_select_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonsVBox/HowToPlayButton" to="." method="_on_tutorial_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonsVBox/QuitButton" to="." method="_on_quit_button_pressed"]

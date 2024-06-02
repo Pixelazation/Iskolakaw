@@ -1,0 +1,78 @@
+[gd_scene load_steps=3 format=3 uid="uid://bemwb7wi3nurk"]
+
+[ext_resource type="Theme" uid="uid://bdwiya3vu4tw" path="res://assets/themes/default_theme.tres" id="1_qlop4"]
+[ext_resource type="Script" path="res://scenes/ui/menus/level_complete.gd" id="2_pw62v"]
+
+[node name="LevelComplete" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_qlop4")
+script = ExtResource("2_pw62v")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.505882, 0.654902, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="LevelComplete" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 128
+text = "Level #
+Complete!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StarCount" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 96
+text = "N / M Stars"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ButtonsVBox" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+
+[node name="PlayAgainButton" type="Button" parent="MarginContainer/VBoxContainer/ButtonsVBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "Play again"
+
+[node name="LevelButton" type="Button" parent="MarginContainer/VBoxContainer/ButtonsVBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "Level Select"
+
+[node name="MainMenuButton" type="Button" parent="MarginContainer/VBoxContainer/ButtonsVBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "Main menu"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonsVBox/LevelButton" to="." method="_on_level_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonsVBox/MainMenuButton" to="." method="_on_main_menu_button_pressed"]

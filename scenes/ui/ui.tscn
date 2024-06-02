@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=3 uid="uid://cl5llj2gljs8q"]
+
+[ext_resource type="Script" path="res://scenes/ui/ui.gd" id="1_ndigk"]
+[ext_resource type="PackedScene" uid="uid://04q20oaug0y2" path="res://scenes/ui/menus/main_menu.tscn" id="1_y7762"]
+[ext_resource type="Theme" uid="uid://bdwiya3vu4tw" path="res://assets/themes/default_theme.tres" id="2_qef7i"]
+[ext_resource type="PackedScene" uid="uid://do4p7kqqr6isc" path="res://scenes/ui/menus/tutorial_screen.tscn" id="3_ctvn7"]
+[ext_resource type="PackedScene" uid="uid://csjxebpqvexgw" path="res://scenes/game/display/game_player.tscn" id="4_0xe0t"]
+[ext_resource type="PackedScene" uid="uid://bemwb7wi3nurk" path="res://scenes/ui/menus/level_complete.tscn" id="6_5gu8p"]
+[ext_resource type="PackedScene" uid="uid://06fvwpw7o6x0" path="res://scenes/ui/menus/level_select.tscn" id="7_ago3p"]
+
+[node name="UI" type="CanvasLayer"]
+script = ExtResource("1_ndigk")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_qef7i")
+
+[node name="MainMenu" parent="Control" instance=ExtResource("1_y7762")]
+layout_mode = 1
+
+[node name="HowToPlay" parent="Control" instance=ExtResource("3_ctvn7")]
+visible = false
+layout_mode = 1
+
+[node name="GamePlayer" parent="Control" instance=ExtResource("4_0xe0t")]
+visible = false
+layout_mode = 1
+
+[node name="LevelComplete" parent="Control" instance=ExtResource("6_5gu8p")]
+visible = false
+layout_mode = 1
+
+[node name="LevelSelect" parent="Control" instance=ExtResource("7_ago3p")]
+visible = false
+layout_mode = 1
+
+[connection signal="level_select" from="Control/MainMenu" to="." method="_on_main_menu_level_select"]
+[connection signal="tutorial_screen" from="Control/MainMenu" to="." method="_on_main_menu_tutorial_screen"]
+[connection signal="back_to_main" from="Control/HowToPlay" to="." method="_on_how_to_play_back_to_main"]
+[connection signal="level_win" from="Control/GamePlayer" to="." method="_on_game_player_level_win"]
+[connection signal="return_menu" from="Control/GamePlayer" to="." method="_on_game_player_return_menu"]
+[connection signal="back_to_main" from="Control/LevelComplete" to="." method="_on_level_complete_back_to_main"]
+[connection signal="level_select" from="Control/LevelComplete" to="." method="_on_level_complete_level_select"]
+[connection signal="back_to_main" from="Control/LevelSelect" to="." method="_on_level_select_back_to_main"]
+[connection signal="load_level" from="Control/LevelSelect" to="." method="_on_level_select_load_level"]

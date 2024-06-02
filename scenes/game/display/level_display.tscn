@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://dwy76uksnbqns"]
+
+[ext_resource type="Script" path="res://scenes/game/display/level_display.gd" id="1_vxkxx"]
+[ext_resource type="PackedScene" uid="uid://bqjwvsn25defh" path="res://scenes/game/display/play.tscn" id="3_pgfrh"]
+
+[node name="LevelDisplay" type="GridContainer"]
+offset_right = 516.0
+offset_bottom = 516.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 8
+script = ExtResource("1_vxkxx")
+PLAY_SCENE = ExtResource("3_pgfrh")
+
+[node name="Play" parent="." instance=ExtResource("3_pgfrh")]

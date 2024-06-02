@@ -1,0 +1,207 @@
+[gd_scene load_steps=11 format=3 uid="uid://csjxebpqvexgw"]
+
+[ext_resource type="Theme" uid="uid://bdwiya3vu4tw" path="res://assets/themes/default_theme.tres" id="1_6vr4y"]
+[ext_resource type="Script" path="res://scenes/game/display/game_player.gd" id="2_asjly"]
+[ext_resource type="PackedScene" uid="uid://dwy76uksnbqns" path="res://scenes/game/display/level_display.tscn" id="2_f06c7"]
+[ext_resource type="Theme" uid="uid://bomwsm4n04qj6" path="res://assets/themes/tile_select_theme.tres" id="4_tn6bs"]
+[ext_resource type="ButtonGroup" uid="uid://bnmc2blhicqk2" path="res://assets/button_groups/tile_select_button_group.tres" id="5_0ocmr"]
+[ext_resource type="Texture2D" uid="uid://cv31qxcuf7jyv" path="res://assets/textures/tiles/left-arrow.png" id="6_28xji"]
+[ext_resource type="Texture2D" uid="uid://82ptdf2c6la7" path="res://assets/textures/tiles/right-arrow.png" id="6_ppp2g"]
+[ext_resource type="Texture2D" uid="uid://c7vep4rf7pbgd" path="res://assets/textures/tiles/dash-arrow.png" id="8_ia6xj"]
+[ext_resource type="Texture2D" uid="uid://do7x2thejdga7" path="res://assets/textures/tiles/up-arrow.png" id="9_m2c0t"]
+[ext_resource type="Texture2D" uid="uid://cnrv8g68pkqmh" path="res://assets/textures/tiles/down-arrow.png" id="10_e1naf"]
+
+[node name="GamePlayer" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_6vr4y")
+script = ExtResource("2_asjly")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.505882, 0.654902, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
+size_flags_stretch_ratio = 0.6
+
+[node name="LevelNumber" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 96
+text = "LEVEL #"
+horizontal_alignment = 1
+
+[node name="GameDisplay" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+alignment = 1
+
+[node name="EnergyCount" type="Label" parent="MarginContainer/VBoxContainer/GameDisplay"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 32
+text = "Energy
+10
+"
+horizontal_alignment = 1
+
+[node name="LevelDisplay" parent="MarginContainer/VBoxContainer/GameDisplay" instance=ExtResource("2_f06c7")]
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="StarCount" type="Label" parent="MarginContainer/VBoxContainer/GameDisplay"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 32
+text = "STARS
+0 / 3"
+horizontal_alignment = 1
+
+[node name="TileSelector" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/VBoxContainer/TileSelector"]
+layout_mode = 2
+size_flags_vertical = 3
+color = Color(0.243137, 0.298039, 1, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/TileSelector"]
+layout_mode = 2
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="TileSelectDisplay" type="HBoxContainer" parent="MarginContainer/VBoxContainer/TileSelector/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+theme = ExtResource("4_tn6bs")
+alignment = 1
+
+[node name="SelectLeft" type="Button" parent="MarginContainer/VBoxContainer/TileSelector/MarginContainer/TileSelectDisplay"]
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_font_sizes/font_size = 64
+toggle_mode = true
+button_group = ExtResource("5_0ocmr")
+text = " 5"
+icon = ExtResource("6_28xji")
+
+[node name="SelectRight" type="Button" parent="MarginContainer/VBoxContainer/TileSelector/MarginContainer/TileSelectDisplay"]
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_font_sizes/font_size = 64
+toggle_mode = true
+button_group = ExtResource("5_0ocmr")
+text = " 5"
+icon = ExtResource("6_ppp2g")
+
+[node name="SelectDash" type="Button" parent="MarginContainer/VBoxContainer/TileSelector/MarginContainer/TileSelectDisplay"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_font_sizes/font_size = 64
+toggle_mode = true
+button_group = ExtResource("5_0ocmr")
+text = " 5"
+icon = ExtResource("8_ia6xj")
+
+[node name="SelectUp" type="Button" parent="MarginContainer/VBoxContainer/TileSelector/MarginContainer/TileSelectDisplay"]
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_font_sizes/font_size = 64
+toggle_mode = true
+button_group = ExtResource("5_0ocmr")
+text = " 5"
+icon = ExtResource("9_m2c0t")
+
+[node name="SelectDown" type="Button" parent="MarginContainer/VBoxContainer/TileSelector/MarginContainer/TileSelectDisplay"]
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_font_sizes/font_size = 64
+toggle_mode = true
+button_group = ExtResource("5_0ocmr")
+text = " 5"
+icon = ExtResource("10_e1naf")
+
+[node name="EraseButton" type="Button" parent="MarginContainer/VBoxContainer/TileSelector/MarginContainer/TileSelectDisplay"]
+layout_mode = 2
+size_flags_horizontal = 6
+theme = ExtResource("1_6vr4y")
+theme_override_font_sizes/font_size = 64
+toggle_mode = true
+button_group = ExtResource("5_0ocmr")
+text = "  Erase  "
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 32
+
+[node name="ButtonsDisplay" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="StartButton" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/ButtonsDisplay"]
+layout_mode = 2
+size_flags_horizontal = 2
+theme_override_font_sizes/font_size = 40
+text = "Start"
+
+[node name="ResetButton" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/ButtonsDisplay"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_font_sizes/font_size = 40
+text = "RESET"
+
+[node name="ReturnButton" type="Button" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "RETURN
+TO
+MENU"
+
+[connection signal="draw" from="." to="." method="_on_draw"]
+[connection signal="toggle_run" from="." to="." method="_on_toggle_run"]
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="level_win" from="MarginContainer/VBoxContainer/GameDisplay/LevelDisplay" to="." method="_on_level_display_level_win"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/TileSelector/MarginContainer/TileSelectDisplay/SelectLeft" to="MarginContainer/VBoxContainer/GameDisplay/LevelDisplay" method="_on_select_left_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/TileSelector/MarginContainer/TileSelectDisplay/SelectRight" to="MarginContainer/VBoxContainer/GameDisplay/LevelDisplay" method="_on_select_right_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/TileSelector/MarginContainer/TileSelectDisplay/SelectDash" to="MarginContainer/VBoxContainer/GameDisplay/LevelDisplay" method="_on_select_dash_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/TileSelector/MarginContainer/TileSelectDisplay/SelectUp" to="MarginContainer/VBoxContainer/GameDisplay/LevelDisplay" method="_on_select_up_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/TileSelector/MarginContainer/TileSelectDisplay/SelectDown" to="MarginContainer/VBoxContainer/GameDisplay/LevelDisplay" method="_on_select_down_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/TileSelector/MarginContainer/TileSelectDisplay/EraseButton" to="MarginContainer/VBoxContainer/GameDisplay/LevelDisplay" method="_on_erase_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer2/ButtonsDisplay/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer2/ButtonsDisplay/ResetButton" to="." method="_on_reset_button_pressed"]
+[connection signal="pressed" from="MarginContainer/ReturnButton" to="." method="_on_return_button_pressed"]
