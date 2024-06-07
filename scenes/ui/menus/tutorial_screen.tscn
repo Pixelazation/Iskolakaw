@@ -1,7 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://do4p7kqqr6isc"]
+[gd_scene load_steps=12 format=3 uid="uid://do4p7kqqr6isc"]
 
 [ext_resource type="Theme" uid="uid://bdwiya3vu4tw" path="res://assets/themes/default_theme.tres" id="1_ir68a"]
-[ext_resource type="Script" path="res://scenes/ui/menus/tutorial_screen.gd" id="2_lr2gl"]
+[ext_resource type="Script" path="res://scenes/ui/menus/info_screens_script.gd" id="2_ke81k"]
+[ext_resource type="Texture2D" uid="uid://n6eyhksdslw7" path="res://assets/textures/tiles/final_tiles/ground.png" id="3_ilnao"]
+[ext_resource type="Texture2D" uid="uid://5y6mj4ny65mo" path="res://assets/textures/tiles/final_tiles/up flag.png" id="4_23cft"]
+[ext_resource type="Texture2D" uid="uid://dqnvckwdyaoar" path="res://assets/textures/tiles/final_tiles/oblation.png" id="5_aki54"]
+[ext_resource type="Texture2D" uid="uid://cutrvfpmwvt00" path="res://assets/textures/tiles/final_tiles/paper arrow right.png" id="6_jbj82"]
+[ext_resource type="PackedScene" uid="uid://dep7xdlc8m2vw" path="res://scenes/game/player/isko.tscn" id="7_p22j1"]
+[ext_resource type="Texture2D" uid="uid://bou8v4g1a8kp" path="res://assets/textures/tiles/final_tiles/stick arrow down.png" id="8_oq7ps"]
+[ext_resource type="Texture2D" uid="uid://b7x8km4jkw6ln" path="res://assets/textures/tiles/final_tiles/cobra.png" id="9_p5ogq"]
+[ext_resource type="Texture2D" uid="uid://dgit8x643p2ro" path="res://assets/textures/tiles/final_tiles/bush.png" id="10_l30jr"]
+[ext_resource type="Texture2D" uid="uid://ce2hm8g8nt05n" path="res://assets/textures/tiles/final_tiles/bluebook.png" id="10_p3mfm"]
 
 [node name="HowToPlay" type="Control"]
 layout_mode = 3
@@ -11,9 +20,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_ir68a")
-script = ExtResource("2_lr2gl")
+script = ExtResource("2_ke81k")
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -40,10 +50,228 @@ alignment = 1
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 3
+size_flags_vertical = 1
 theme_override_font_sizes/font_size = 128
 text = "HOW TO PLAY"
 horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "
+Place down arrows and guide our lost Iska to Oble!
+
+"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 2
+
+[node name="TileContainer" type="Control" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+
+[node name="bg1" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/TileContainer"]
+layout_mode = 2
+offset_left = -229.0
+offset_top = 3.0
+offset_right = -79.0
+offset_bottom = 153.0
+size_flags_horizontal = 4
+texture = ExtResource("3_ilnao")
+expand_mode = 3
+
+[node name="bg2" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/TileContainer"]
+layout_mode = 2
+offset_left = -79.0
+offset_top = 3.0
+offset_right = 71.0
+offset_bottom = 153.0
+size_flags_horizontal = 4
+texture = ExtResource("3_ilnao")
+expand_mode = 3
+
+[node name="bg3" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/TileContainer"]
+layout_mode = 2
+offset_left = 71.0
+offset_top = 3.0
+offset_right = 221.0
+offset_bottom = 153.0
+size_flags_horizontal = 4
+texture = ExtResource("3_ilnao")
+expand_mode = 3
+
+[node name="bg4" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/TileContainer"]
+layout_mode = 2
+offset_left = 221.0
+offset_top = 3.0
+offset_right = 371.0
+offset_bottom = 153.0
+size_flags_horizontal = 4
+texture = ExtResource("3_ilnao")
+expand_mode = 3
+
+[node name="Start" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/TileContainer"]
+layout_mode = 2
+offset_left = -79.0
+offset_top = 3.0
+offset_right = 71.0
+offset_bottom = 153.0
+size_flags_horizontal = 4
+texture = ExtResource("4_23cft")
+expand_mode = 3
+
+[node name="End" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/TileContainer"]
+layout_mode = 2
+offset_left = 221.0
+offset_top = 3.0
+offset_right = 371.0
+offset_bottom = 153.0
+size_flags_horizontal = 4
+texture = ExtResource("5_aki54")
+expand_mode = 3
+
+[node name="Right" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/TileContainer"]
+layout_mode = 2
+offset_left = -229.0
+offset_top = 3.0
+offset_right = -79.0
+offset_bottom = 153.0
+size_flags_horizontal = 4
+texture = ExtResource("6_jbj82")
+expand_mode = 3
+
+[node name="Isko" parent="MarginContainer/VBoxContainer/HBoxContainer/TileContainer" instance=ExtResource("7_p22j1")]
+position = Vector2(3, 67)
+scale = Vector2(2, 2)
+
+[node name="Label3" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "
+Iska uses 1 energy per tile, so find good routes!
+
+Collect as many blue books as you can along the way. You 
+may also encounter various consumables and obstacles "
+
+[node name="TileContainer" type="Control" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+
+[node name="bg1" type="TextureRect" parent="MarginContainer/VBoxContainer/TileContainer"]
+layout_mode = 2
+offset_left = 624.0
+offset_top = 40.0
+offset_right = 774.0
+offset_bottom = 190.0
+size_flags_horizontal = 4
+texture = ExtResource("3_ilnao")
+expand_mode = 3
+
+[node name="bg2" type="TextureRect" parent="MarginContainer/VBoxContainer/TileContainer"]
+layout_mode = 2
+offset_left = 774.0
+offset_top = 40.0
+offset_right = 924.0
+offset_bottom = 190.0
+size_flags_horizontal = 4
+texture = ExtResource("3_ilnao")
+expand_mode = 3
+
+[node name="bg3" type="TextureRect" parent="MarginContainer/VBoxContainer/TileContainer"]
+layout_mode = 2
+offset_left = 924.0
+offset_top = 40.0
+offset_right = 1074.0
+offset_bottom = 190.0
+size_flags_horizontal = 4
+texture = ExtResource("3_ilnao")
+expand_mode = 3
+
+[node name="bg4" type="TextureRect" parent="MarginContainer/VBoxContainer/TileContainer"]
+layout_mode = 2
+offset_left = 1074.0
+offset_top = 40.0
+offset_right = 1224.0
+offset_bottom = 190.0
+size_flags_horizontal = 4
+texture = ExtResource("3_ilnao")
+expand_mode = 3
+
+[node name="Start" type="TextureRect" parent="MarginContainer/VBoxContainer/TileContainer"]
+layout_mode = 2
+offset_left = 774.0
+offset_top = 40.0
+offset_right = 924.0
+offset_bottom = 190.0
+size_flags_horizontal = 4
+texture = ExtResource("8_oq7ps")
+expand_mode = 3
+
+[node name="Energy" type="TextureRect" parent="MarginContainer/VBoxContainer/TileContainer"]
+layout_mode = 2
+offset_left = 1074.0
+offset_top = 40.0
+offset_right = 1224.0
+offset_bottom = 190.0
+size_flags_horizontal = 4
+texture = ExtResource("9_p5ogq")
+expand_mode = 3
+
+[node name="Obstacle" type="TextureRect" parent="MarginContainer/VBoxContainer/TileContainer"]
+layout_mode = 2
+offset_left = 915.0
+offset_top = 40.0
+offset_right = 1065.0
+offset_bottom = 190.0
+size_flags_horizontal = 4
+texture = ExtResource("10_l30jr")
+expand_mode = 3
+
+[node name="Star" type="TextureRect" parent="MarginContainer/VBoxContainer/TileContainer"]
+layout_mode = 2
+offset_left = 624.0
+offset_top = 40.0
+offset_right = 774.0
+offset_bottom = 190.0
+size_flags_horizontal = 4
+texture = ExtResource("10_p3mfm")
+expand_mode = 3
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+columns = 2
+
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 40
+text = "Place down arrows 
+and guide our 
+lost Iska to the goal!
+"
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(1, 0.372549, 1, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="MarginContainer/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(1, 0.372549, 1, 1)
+
+[node name="Label3" type="Label" parent="MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 40
+text = "Every tile movement takes
+1 energy, so place wisely!"
 
 [node name="ButtonsVBox" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2

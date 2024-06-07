@@ -8,10 +8,11 @@ extends Control
 @onready var select_up = $MarginContainer/VBoxContainer/TileSelector/MarginContainer/TileSelectDisplay/SelectUp
 @onready var select_down = $MarginContainer/VBoxContainer/TileSelector/MarginContainer/TileSelectDisplay/SelectDown
 
-@onready var energy_count = $MarginContainer/VBoxContainer/GameDisplay/EnergyCount
-@onready var star_count = $MarginContainer/VBoxContainer/GameDisplay/StarCount
+@onready var energy_count = $MarginContainer/VBoxContainer/GameDisplay/VBoxContainer/EnergyCount
+@onready var star_count = $MarginContainer/VBoxContainer/GameDisplay/VBoxContainer/StarCount
 @onready var level_number = $MarginContainer/VBoxContainer/HBoxContainer/LevelNumber
 
+@onready var toggle_button = $MarginContainer/VBoxContainer/GameDisplay/VBoxContainer2/ToggleButton
 
 signal return_menu()
 signal toggle_run()
@@ -19,9 +20,17 @@ signal reset()
 
 signal level_win(level, stars, total)
 
+# Track if level is running
+var running = false
+
 func loadLevel(level: int):
 	show()
 	level_display.play.loadLevel(level)
+	running = false
+	
+func resetLevel():
+	level_display.resetLevel()
+	running = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -53,12 +62,20 @@ func _on_return_button_pressed():
 	hide()
 	# more code for game stuff here maybe
 	level_display.resetLevel()
+	running = false
 
-func _on_start_button_pressed():
-	level_display.toggleRun()
+func _on_toggle_button_pressed():
+	if !running:
+		level_display.toggleRun()
+		toggle_button.text = "Stop"
+		running = true
+	else:
+		level_display.restartRun()
+		toggle_button.text = "Start"
+		running = false
 
 func _on_reset_button_pressed():
-	level_display.resetLevel()
+	resetLevel()
 
 
 func _on_level_display_level_win(level, stars, total):
@@ -73,3 +90,8 @@ func _on_draw():
 	select_dash.button_pressed = false
 	select_up.button_pressed = false
 	select_down.button_pressed = false
+
+
+func _on_level_display_stop_run():
+	toggle_button.text = "Start"
+	running = false

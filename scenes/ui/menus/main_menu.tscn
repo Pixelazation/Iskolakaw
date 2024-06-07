@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://04q20oaug0y2"]
+[gd_scene load_steps=4 format=3 uid="uid://04q20oaug0y2"]
 
 [ext_resource type="Theme" uid="uid://bdwiya3vu4tw" path="res://assets/themes/default_theme.tres" id="1_aq3a6"]
 [ext_resource type="Script" path="res://scenes/ui/menus/main_menu.gd" id="2_gqq4o"]
+[ext_resource type="Texture2D" uid="uid://c3vct58jsxelj" path="res://assets/textures/up-background.jpg" id="3_aj11j"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -13,14 +14,25 @@ grow_vertical = 2
 theme = ExtResource("1_aq3a6")
 script = ExtResource("2_gqq4o")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="TextureRect" type="TextureRect" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0.505882, 0.654902, 1)
+texture = ExtResource("3_aj11j")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.505882, 0.654902, 0.705882)
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -73,6 +85,18 @@ theme_override_font_sizes/font_size = 64
 text = "How to Play
 "
 
+[node name="AboutButton" type="Button" parent="MarginContainer/VBoxContainer/ButtonsVBox"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_neighbor_top = NodePath("../LevelSelectButton")
+focus_neighbor_bottom = NodePath("../QuitButton")
+focus_next = NodePath("../QuitButton")
+focus_previous = NodePath("../LevelSelectButton")
+theme_override_font_sizes/font_size = 64
+text = "About
+"
+
 [node name="QuitButton" type="Button" parent="MarginContainer/VBoxContainer/ButtonsVBox"]
 layout_mode = 2
 size_flags_horizontal = 4
@@ -87,4 +111,5 @@ text = "Quit
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonsVBox/LevelSelectButton" to="." method="_on_level_select_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonsVBox/HowToPlayButton" to="." method="_on_tutorial_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonsVBox/AboutButton" to="." method="_on_about_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonsVBox/QuitButton" to="." method="_on_quit_button_pressed"]

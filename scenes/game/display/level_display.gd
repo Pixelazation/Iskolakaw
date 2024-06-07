@@ -5,6 +5,7 @@ extends GridContainer
 @export var PLAY_SCENE: PackedScene
 
 signal level_win(level, stars, total)
+signal stop_run()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -31,12 +32,18 @@ func getStarProgress():
 func getLevel():
 	return str(play.currentLevel)
 	
+func restartRun():
+	var placedTiles : Dictionary = play.savePlayerTiles()
+	resetLevel()
+	play.loadPlayerTiles(placedTiles)
+	
 func resetLevel():
 	var level = play.currentLevel
 	remove_child(play)
 	play = PLAY_SCENE.instantiate()
 	add_child(play)
 	play.loadLevel(level)
+	stop_run.emit()
 	
 
 # TILE DATA #

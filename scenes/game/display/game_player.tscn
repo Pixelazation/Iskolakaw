@@ -1,15 +1,16 @@
-[gd_scene load_steps=11 format=3 uid="uid://csjxebpqvexgw"]
+[gd_scene load_steps=12 format=3 uid="uid://csjxebpqvexgw"]
 
 [ext_resource type="Theme" uid="uid://bdwiya3vu4tw" path="res://assets/themes/default_theme.tres" id="1_6vr4y"]
 [ext_resource type="Script" path="res://scenes/game/display/game_player.gd" id="2_asjly"]
 [ext_resource type="PackedScene" uid="uid://dwy76uksnbqns" path="res://scenes/game/display/level_display.tscn" id="2_f06c7"]
+[ext_resource type="Theme" uid="uid://bvqmdxfbtso8v" path="res://assets/themes/counter_theme.tres" id="3_wdc0a"]
 [ext_resource type="Theme" uid="uid://bomwsm4n04qj6" path="res://assets/themes/tile_select_theme.tres" id="4_tn6bs"]
 [ext_resource type="ButtonGroup" uid="uid://bnmc2blhicqk2" path="res://assets/button_groups/tile_select_button_group.tres" id="5_0ocmr"]
-[ext_resource type="Texture2D" uid="uid://cv31qxcuf7jyv" path="res://assets/textures/tiles/left-arrow.png" id="6_28xji"]
-[ext_resource type="Texture2D" uid="uid://82ptdf2c6la7" path="res://assets/textures/tiles/right-arrow.png" id="6_ppp2g"]
+[ext_resource type="Texture2D" uid="uid://bun33qdoy0vbg" path="res://assets/textures/tiles/final_tiles/paper arrow left.png" id="7_uphg5"]
 [ext_resource type="Texture2D" uid="uid://c7vep4rf7pbgd" path="res://assets/textures/tiles/dash-arrow.png" id="8_ia6xj"]
-[ext_resource type="Texture2D" uid="uid://do7x2thejdga7" path="res://assets/textures/tiles/up-arrow.png" id="9_m2c0t"]
-[ext_resource type="Texture2D" uid="uid://cnrv8g68pkqmh" path="res://assets/textures/tiles/down-arrow.png" id="10_e1naf"]
+[ext_resource type="Texture2D" uid="uid://cutrvfpmwvt00" path="res://assets/textures/tiles/final_tiles/paper arrow right.png" id="8_lu42s"]
+[ext_resource type="Texture2D" uid="uid://dawikevigswf4" path="res://assets/textures/tiles/final_tiles/paper arrow up.png" id="10_dbetk"]
+[ext_resource type="Texture2D" uid="uid://yv4uju2wcbd3" path="res://assets/textures/tiles/final_tiles/paper arrow down.png" id="11_2yt7k"]
 
 [node name="GamePlayer" type="Control"]
 layout_mode = 3
@@ -22,6 +23,7 @@ theme = ExtResource("1_6vr4y")
 script = ExtResource("2_asjly")
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -49,10 +51,11 @@ alignment = 1
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 2
+size_flags_vertical = 3
 size_flags_stretch_ratio = 0.6
 
 [node name="LevelNumber" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(0, 300)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 1
@@ -62,31 +65,62 @@ horizontal_alignment = 1
 
 [node name="GameDisplay" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 10
+size_flags_vertical = 2
 alignment = 1
 
-[node name="EnergyCount" type="Label" parent="MarginContainer/VBoxContainer/GameDisplay"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/GameDisplay"]
+custom_minimum_size = Vector2(0, 400)
 layout_mode = 2
-size_flags_horizontal = 6
-size_flags_vertical = 1
+size_flags_horizontal = 3
+
+[node name="EnergyCount" type="Label" parent="MarginContainer/VBoxContainer/GameDisplay/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme = ExtResource("3_wdc0a")
 theme_override_font_sizes/font_size = 32
 text = "Energy
-10
-"
+10"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StarCount" type="Label" parent="MarginContainer/VBoxContainer/GameDisplay/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+theme = ExtResource("3_wdc0a")
+theme_override_font_sizes/font_size = 32
+text = "STARS
+0 / 3"
 horizontal_alignment = 1
 
 [node name="LevelDisplay" parent="MarginContainer/VBoxContainer/GameDisplay" instance=ExtResource("2_f06c7")]
 layout_mode = 2
 size_flags_horizontal = 6
+size_flags_vertical = 4
+size_flags_stretch_ratio = 1.25
 
-[node name="StarCount" type="Label" parent="MarginContainer/VBoxContainer/GameDisplay"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/GameDisplay"]
+custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
-size_flags_horizontal = 6
-size_flags_vertical = 1
-theme_override_font_sizes/font_size = 32
-text = "STARS
-0 / 3"
-horizontal_alignment = 1
+size_flags_horizontal = 3
+theme = ExtResource("4_tn6bs")
+
+[node name="ToggleButton" type="Button" parent="MarginContainer/VBoxContainer/GameDisplay/VBoxContainer2"]
+custom_minimum_size = Vector2(400, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 40
+text = "Start"
+
+[node name="ResetButton" type="Button" parent="MarginContainer/VBoxContainer/GameDisplay/VBoxContainer2"]
+custom_minimum_size = Vector2(400, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 40
+text = "RESET"
 
 [node name="TileSelector" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -95,7 +129,7 @@ size_flags_vertical = 10
 [node name="ColorRect" type="ColorRect" parent="MarginContainer/VBoxContainer/TileSelector"]
 layout_mode = 2
 size_flags_vertical = 3
-color = Color(0.243137, 0.298039, 1, 1)
+color = Color(0.192157, 0.266667, 0.909804, 1)
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/TileSelector"]
 layout_mode = 2
@@ -115,7 +149,7 @@ theme_override_font_sizes/font_size = 64
 toggle_mode = true
 button_group = ExtResource("5_0ocmr")
 text = " 5"
-icon = ExtResource("6_28xji")
+icon = ExtResource("7_uphg5")
 
 [node name="SelectRight" type="Button" parent="MarginContainer/VBoxContainer/TileSelector/MarginContainer/TileSelectDisplay"]
 layout_mode = 2
@@ -124,7 +158,7 @@ theme_override_font_sizes/font_size = 64
 toggle_mode = true
 button_group = ExtResource("5_0ocmr")
 text = " 5"
-icon = ExtResource("6_ppp2g")
+icon = ExtResource("8_lu42s")
 
 [node name="SelectDash" type="Button" parent="MarginContainer/VBoxContainer/TileSelector/MarginContainer/TileSelectDisplay"]
 visible = false
@@ -143,7 +177,7 @@ theme_override_font_sizes/font_size = 64
 toggle_mode = true
 button_group = ExtResource("5_0ocmr")
 text = " 5"
-icon = ExtResource("9_m2c0t")
+icon = ExtResource("10_dbetk")
 
 [node name="SelectDown" type="Button" parent="MarginContainer/VBoxContainer/TileSelector/MarginContainer/TileSelectDisplay"]
 layout_mode = 2
@@ -152,12 +186,12 @@ theme_override_font_sizes/font_size = 64
 toggle_mode = true
 button_group = ExtResource("5_0ocmr")
 text = " 5"
-icon = ExtResource("10_e1naf")
+icon = ExtResource("11_2yt7k")
 
 [node name="EraseButton" type="Button" parent="MarginContainer/VBoxContainer/TileSelector/MarginContainer/TileSelectDisplay"]
 layout_mode = 2
 size_flags_horizontal = 6
-theme = ExtResource("1_6vr4y")
+theme = ExtResource("3_wdc0a")
 theme_override_font_sizes/font_size = 64
 toggle_mode = true
 button_group = ExtResource("5_0ocmr")
@@ -171,22 +205,12 @@ theme_override_constants/margin_top = 32
 layout_mode = 2
 size_flags_vertical = 8
 
-[node name="StartButton" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/ButtonsDisplay"]
-layout_mode = 2
-size_flags_horizontal = 2
-theme_override_font_sizes/font_size = 40
-text = "Start"
-
-[node name="ResetButton" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/ButtonsDisplay"]
-layout_mode = 2
-size_flags_horizontal = 10
-theme_override_font_sizes/font_size = 40
-text = "RESET"
-
 [node name="ReturnButton" type="Button" parent="MarginContainer"]
+custom_minimum_size = Vector2(250, 150)
 layout_mode = 2
 size_flags_horizontal = 2
 size_flags_vertical = 0
+theme = ExtResource("4_tn6bs")
 theme_override_font_sizes/font_size = 32
 text = "RETURN
 TO
@@ -196,12 +220,13 @@ MENU"
 [connection signal="toggle_run" from="." to="." method="_on_toggle_run"]
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="level_win" from="MarginContainer/VBoxContainer/GameDisplay/LevelDisplay" to="." method="_on_level_display_level_win"]
+[connection signal="stop_run" from="MarginContainer/VBoxContainer/GameDisplay/LevelDisplay" to="." method="_on_level_display_stop_run"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/GameDisplay/VBoxContainer2/ToggleButton" to="." method="_on_toggle_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/GameDisplay/VBoxContainer2/ResetButton" to="." method="_on_reset_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/TileSelector/MarginContainer/TileSelectDisplay/SelectLeft" to="MarginContainer/VBoxContainer/GameDisplay/LevelDisplay" method="_on_select_left_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/TileSelector/MarginContainer/TileSelectDisplay/SelectRight" to="MarginContainer/VBoxContainer/GameDisplay/LevelDisplay" method="_on_select_right_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/TileSelector/MarginContainer/TileSelectDisplay/SelectDash" to="MarginContainer/VBoxContainer/GameDisplay/LevelDisplay" method="_on_select_dash_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/TileSelector/MarginContainer/TileSelectDisplay/SelectUp" to="MarginContainer/VBoxContainer/GameDisplay/LevelDisplay" method="_on_select_up_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/TileSelector/MarginContainer/TileSelectDisplay/SelectDown" to="MarginContainer/VBoxContainer/GameDisplay/LevelDisplay" method="_on_select_down_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/TileSelector/MarginContainer/TileSelectDisplay/EraseButton" to="MarginContainer/VBoxContainer/GameDisplay/LevelDisplay" method="_on_erase_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer2/ButtonsDisplay/StartButton" to="." method="_on_start_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer2/ButtonsDisplay/ResetButton" to="." method="_on_reset_button_pressed"]
 [connection signal="pressed" from="MarginContainer/ReturnButton" to="." method="_on_return_button_pressed"]

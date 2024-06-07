@@ -4,6 +4,13 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_plb0w"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5radj"]
+bg_color = Color(0.12549, 0.32549, 0.101961, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0w4n0"]
 bg_color = Color(0.34902, 0.639216, 0.192157, 1)
 corner_radius_top_left = 16
@@ -12,20 +19,13 @@ corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
 shadow_size = 4
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5radj"]
-bg_color = Color(0.403922, 0.741176, 0.223529, 1)
-corner_radius_top_left = 16
-corner_radius_top_right = 16
-corner_radius_bottom_right = 16
-corner_radius_bottom_left = 16
-
 [resource]
 default_font = ExtResource("1_c8i8s")
-Button/colors/font_focus_color = Color(0.94902, 0.94902, 0.0117647, 1)
+Button/colors/font_focus_color = Color(1, 1, 1, 1)
 Button/colors/font_hover_color = Color(0.94902, 0.94902, 0.439216, 1)
 Button/colors/font_pressed_color = Color(0.243137, 1, 0.172549, 1)
 Button/styles/disabled = SubResource("StyleBoxEmpty_plb0w")
-Button/styles/focus = SubResource("StyleBoxFlat_0w4n0")
+Button/styles/focus = SubResource("StyleBoxFlat_5radj")
 Button/styles/hover = SubResource("StyleBoxFlat_0w4n0")
 Button/styles/normal = SubResource("StyleBoxFlat_5radj")
 Button/styles/pressed = SubResource("StyleBoxFlat_0w4n0")

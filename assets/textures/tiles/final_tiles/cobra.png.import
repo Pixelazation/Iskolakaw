@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bc5jeihwbseq8"
-path="res://.godot/imported/arrow.png-af9c40b335090227900bc7e5c1ee343c.ctex"
+uid="uid://b7x8km4jkw6ln"
+path="res://.godot/imported/cobra.png-a03f1f0b3a03577ee42acfa353acd2eb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/arrow.png"
-dest_files=["res://.godot/imported/arrow.png-af9c40b335090227900bc7e5c1ee343c.ctex"]
+source_file="res://assets/textures/tiles/final_tiles/cobra.png"
+dest_files=["res://.godot/imported/cobra.png-a03f1f0b3a03577ee42acfa353acd2eb.ctex"]
 
 [params]
 

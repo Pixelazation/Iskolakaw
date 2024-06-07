@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bemwb7wi3nurk"]
+[gd_scene load_steps=4 format=3 uid="uid://bemwb7wi3nurk"]
 
 [ext_resource type="Theme" uid="uid://bdwiya3vu4tw" path="res://assets/themes/default_theme.tres" id="1_qlop4"]
 [ext_resource type="Script" path="res://scenes/ui/menus/level_complete.gd" id="2_pw62v"]
+[ext_resource type="AudioStream" uid="uid://bga7xakw8n2bq" path="res://assets/sounds/SFX/level_success.mp3" id="3_o0og0"]
 
 [node name="LevelComplete" type="Control"]
 layout_mode = 3
@@ -14,6 +15,7 @@ theme = ExtResource("1_qlop4")
 script = ExtResource("2_pw62v")
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -50,6 +52,7 @@ vertical_alignment = 1
 [node name="StarCount" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 1, 0, 1)
 theme_override_font_sizes/font_size = 96
 text = "N / M Stars"
 horizontal_alignment = 1
@@ -74,5 +77,10 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 64
 text = "Main menu"
 
+[node name="LevelSuccessSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_o0og0")
+
+[connection signal="draw" from="." to="." method="_on_draw"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonsVBox/PlayAgainButton" to="." method="_on_play_again_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonsVBox/LevelButton" to="." method="_on_level_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonsVBox/MainMenuButton" to="." method="_on_main_menu_button_pressed"]

@@ -1,13 +1,20 @@
-[gd_scene load_steps=4 format=3 uid="uid://bbb78ghd5341k"]
+[gd_scene load_steps=5 format=3 uid="uid://bbb78ghd5341k"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_b88j3"]
 [ext_resource type="PackedScene" uid="uid://bqjwvsn25defh" path="res://scenes/game/display/play.tscn" id="3_8bj5r"]
 [ext_resource type="PackedScene" uid="uid://cl5llj2gljs8q" path="res://scenes/ui/ui.tscn" id="4_cy7se"]
+[ext_resource type="AudioStream" uid="uid://c5y5refks2pt0" path="res://assets/sounds/music/up-naming-mahal-8-bit.mp3" id="4_y6kxs"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_b88j3")
 PLAY_SCENE = ExtResource("3_8bj5r")
 
 [node name="UI" parent="." instance=ExtResource("4_cy7se")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_y6kxs")
+volume_db = -20.0
+autoplay = true
+bus = &"Music"
 
 [connection signal="start_game" from="UI" to="." method="_on_ui_start_game"]

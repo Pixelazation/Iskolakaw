@@ -3,6 +3,8 @@ extends Control
 @onready var level_complete = $MarginContainer/VBoxContainer/LevelComplete
 @onready var star_count = $MarginContainer/VBoxContainer/StarCount
 
+@onready var level_success_sound = $LevelSuccessSound
+
 signal replay()
 signal back_to_main()
 signal level_select()
@@ -30,3 +32,11 @@ func _on_level_button_pressed():
 	hide()
 	level_select.emit()
 	
+
+func _on_play_again_button_pressed():
+	hide()
+	replay.emit()
+
+
+func _on_draw():
+	level_success_sound.play()

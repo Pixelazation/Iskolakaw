@@ -1,24 +1,23 @@
-[gd_scene load_steps=3 format=3 uid="uid://dep7xdlc8m2vw"]
+[gd_scene load_steps=4 format=3 uid="uid://dep7xdlc8m2vw"]
 
-[ext_resource type="Texture2D" uid="uid://d03fddiujsj7g" path="res://assets/isko.png" id="1_5x2ey"]
+[ext_resource type="Script" path="res://scenes/game/player/isko.gd" id="1_4rxnj"]
+[ext_resource type="SpriteFrames" uid="uid://cb5f3pkwyuvno" path="res://assets/spritesheets/animated_isko.tres" id="2_cxgvb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fyt2d"]
 
 [node name="Isko" type="CharacterBody2D"]
 z_index = 5
+position = Vector2(2, 0)
 scale = Vector2(0.5, 0.5)
-
-[node name="IskoSprite" type="Sprite2D" parent="."]
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("1_5x2ey")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-root_node = NodePath("../IskoSprite")
-
-[node name="Timer" type="Timer" parent="."]
+script = ExtResource("1_4rxnj")
 
 [node name="Collider" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("RectangleShape2D_fyt2d")
 
-[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-6, -26)
+sprite_frames = ExtResource("2_cxgvb")
+animation = &"left-walk"
+frame_progress = 0.0797224
+offset = Vector2(4, 8)
